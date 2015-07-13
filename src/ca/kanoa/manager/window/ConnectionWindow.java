@@ -1,4 +1,4 @@
-package window;
+package ca.kanoa.manager.window;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;

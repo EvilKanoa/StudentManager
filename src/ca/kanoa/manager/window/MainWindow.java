@@ -1,4 +1,4 @@
-package window;
+package ca.kanoa.manager.window;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;

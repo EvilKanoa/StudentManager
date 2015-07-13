@@ -2,7 +2,7 @@ package ca.kanoa.manager;
 
 import java.awt.EventQueue;
 
-import window.MainWindow;
+import ca.kanoa.manager.window.MainWindow;
 
 public class StudentManager {
 

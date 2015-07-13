@@ -1,4 +1,4 @@
-package window;
+package ca.kanoa.manager.window;
 
 import javax.swing.JFrame;
 
