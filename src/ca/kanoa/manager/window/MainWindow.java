@@ -1,11 +1,15 @@
 package ca.kanoa.manager.window;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
+import java.net.URI;
+import java.net.URLEncoder;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,6 +31,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	private static final long serialVersionUID = -3475707702556552739L;
 	private JDesktopPane desktop;
 	private ConnectionWindow connectionWindow;
+	private WelcomeWindow welcomeWindow;
 	private Set<Runnable> quitListeners;
 
 	public MainWindow() {
@@ -51,26 +56,35 @@ public class MainWindow extends JFrame implements ActionListener {
 		background.setLayout(new BorderLayout());
 		setContentPane(background);
 				
+		welcomeWindow = new WelcomeWindow(getBounds().width / 2, getBounds().height / 2);
+		
 		desktop = new JDesktopPane();
 		desktop.setOpaque(false);
+		desktop.add(welcomeWindow);
 		getContentPane().add(desktop);
 	}
 	
 	private JMenuBar createMenuBar() {
 		JMenuBar menu = new JMenuBar();
+		menu.setBackground(Color.green);
 		
 		JMenu actionMenu = new JMenu("Action");
 		actionMenu.setMnemonic('A');
+		actionMenu.setBackground(Color.green);
 		menu.add(actionMenu);
 		
-		JMenuItem connectItem = new JMenuItem("Connect to database", KeyEvent.VK_D);
+		JMenuItem connectItem = new JMenuItem(
+				"Connect to Database", 
+				KeyEvent.VK_D);
 		connectItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		connectItem.setActionCommand("connect");
 		connectItem.addActionListener(this);
 		actionMenu.add(connectItem);
 		
-		JMenuItem quitItem = new JMenuItem("Quit", KeyEvent.VK_Q);
+		JMenuItem quitItem = new JMenuItem(
+				"Quit", 
+				KeyEvent.VK_Q);
 		quitItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
 		quitItem.setActionCommand("quit");
@@ -79,16 +93,19 @@ public class MainWindow extends JFrame implements ActionListener {
 		
 		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
+		helpMenu.setBackground(Color.green);
 		menu.add(helpMenu);
 		
-		JMenuItem welcomeItem = new JMenuItem("Welcome Screen", KeyEvent.VK_W);
+		JMenuItem welcomeItem = new JMenuItem(
+				"Welcome Screen", 
+				KeyEvent.VK_W);
 		welcomeItem.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_W, ActionEvent.CTRL_MASK));
 		welcomeItem.setActionCommand("welcome");
 		welcomeItem.addActionListener(this);
 		helpMenu.add(welcomeItem);
 		
-		JMenuItem contactMeItem = new JMenuItem("Contact me");
+		JMenuItem contactMeItem = new JMenuItem("Contact Me");
 		contactMeItem.setActionCommand("contact");
 		contactMeItem.addActionListener(this);
 		helpMenu.add(contactMeItem);
@@ -110,6 +127,13 @@ public class MainWindow extends JFrame implements ActionListener {
 			}
 		} else if (event.getActionCommand().equals("quit")) {
 			quit();
+		} else if (event.getActionCommand().equals("contact")) {
+			mailTo("kanoa@kanoa.ca", "Support");
+		} else if (event.getActionCommand().equals("welcome")) {
+			if (welcomeWindow == null || !welcomeWindow.isShowing()) {
+				welcomeWindow = new WelcomeWindow(getBounds().width / 2, getBounds().height / 2);
+				desktop.add(welcomeWindow);
+			}
 		}
 	}
 
@@ -122,5 +146,17 @@ public class MainWindow extends JFrame implements ActionListener {
 	
 	public void addQuitListener(Runnable listener) {
 		quitListeners.add(listener);
+	}
+	
+	private void mailTo(String to, String subject) {
+		try {
+			String mailTo = String.format(
+					"mailto:%s?subject=%s", 
+					URLEncoder.encode(to, "UTF-8"), 
+					URLEncoder.encode(subject, "UTF-8"));
+			Desktop.getDesktop().browse(new URI(mailTo));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
