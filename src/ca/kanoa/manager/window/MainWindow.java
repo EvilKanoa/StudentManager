@@ -116,7 +116,8 @@ public class MainWindow extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand().equals("connect")) {
-			if (connectionWindow == null || !connectionWindow.isShowing()) {
+			if (connectionWindow == null || 
+					(!connectionWindow.isShowing() && !connectionWindow.isIcon())) {
 				connectionWindow = new ConnectionWindow();
 				desktop.add(connectionWindow);
 			}
@@ -130,7 +131,8 @@ public class MainWindow extends JFrame implements ActionListener {
 		} else if (event.getActionCommand().equals("contact")) {
 			mailTo("kanoa@kanoa.ca", "Support");
 		} else if (event.getActionCommand().equals("welcome")) {
-			if (welcomeWindow == null || !welcomeWindow.isShowing()) {
+			if (welcomeWindow == null || 
+					(!welcomeWindow.isShowing() && !welcomeWindow.isIcon())) {
 				welcomeWindow = new WelcomeWindow(getBounds().width / 2, getBounds().height / 2);
 				desktop.add(welcomeWindow);
 			}
