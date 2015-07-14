@@ -7,7 +7,6 @@ import javax.swing.JProgressBar;
 
 import net.miginfocom.swing.MigLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -23,7 +22,7 @@ public class ConnectionWindow extends JInternalFrame {
 
 	public ConnectionWindow() {
 		setTitle("Connect");
-		setBounds(5, 5, 230, 220);
+		setBounds(100, 100, 230, 300);
 		setResizable(false);
 		setClosable(true);
 		setIconifiable(true);
@@ -31,49 +30,48 @@ public class ConnectionWindow extends JInternalFrame {
 		setDefaultCloseOperation(JInternalFrame.HIDE_ON_CLOSE);
 		getContentPane().setLayout(new MigLayout(
 				"wrap 2",
-				"[]30[]",
-				"[][][][][]15[]10[]"));
+				"[]15[]",
+				"[][][][][]10%[][]"));
 		
 		JLabel lblHost = new JLabel("Host");
 		getContentPane().add(lblHost);
 		fHost = new JTextField("127.0.0.1");
 		getContentPane().add(fHost);
-		fHost.setColumns(10);
+		fHost.setColumns(15);
 		
 		JLabel lblPort = new JLabel("Port");
 		getContentPane().add(lblPort);
 		fPort = new JTextField("3306");
 		getContentPane().add(fPort);
-		fPort.setColumns(10);
+		fPort.setColumns(15);
 		
 		JLabel lblUsername = new JLabel("Username");
 		getContentPane().add(lblUsername);
 		fUser = new JTextField();
 		getContentPane().add(fUser);
-		fUser.setColumns(10);
+		fUser.setColumns(15);
 
 		JLabel lblPassword = new JLabel("Password");
 		getContentPane().add(lblPassword);
 		fPass = new JPasswordField();
 		getContentPane().add(fPass);
-		fPass.setColumns(10);
+		fPass.setColumns(15);
 		
 		JLabel lblDatabase = new JLabel("Database");
 		getContentPane().add(lblDatabase);
 		fDatabase = new JTextField("minecraft");
 		getContentPane().add(fDatabase);
-		fDatabase.setColumns(10);
+		fDatabase.setColumns(15);
 		
 		progress = new JProgressBar(0, 10);
 		getContentPane().add(progress, "al center, span 2");
 		
 		JButton btnConnect = new JButton("Connect");
-		btnConnect.setToolTipText("Attemp to connect to database specified "
-				+ "using user supplied details...");
+		btnConnect.setToolTipText("Connect to database specified "
+				+ "using user supplied details.");
 		btnConnect.setActionCommand("connect");
-		btnConnect.setBorder(BorderFactory.createEtchedBorder());
 		btnConnect.setBorderPainted(true);
-		getContentPane().add(btnConnect, "al center,span 2");
+		getContentPane().add(btnConnect, "al center, span 2");
 	}
 
 }
