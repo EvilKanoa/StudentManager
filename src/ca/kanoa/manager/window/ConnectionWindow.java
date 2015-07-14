@@ -22,7 +22,7 @@ public class ConnectionWindow extends JInternalFrame {
 
 	public ConnectionWindow() {
 		setTitle("Connect");
-		setBounds(100, 100, 230, 300);
+		setLocation(150, 150);
 		setResizable(false);
 		setClosable(true);
 		setIconifiable(true);
@@ -31,37 +31,37 @@ public class ConnectionWindow extends JInternalFrame {
 		getContentPane().setLayout(new MigLayout(
 				"wrap 2",
 				"[]15[]",
-				"[][][][][]10%[][]"));
+				"[][][][][]15[][]"));
 		
 		JLabel lblHost = new JLabel("Host");
 		getContentPane().add(lblHost);
 		fHost = new JTextField("127.0.0.1");
 		getContentPane().add(fHost);
-		fHost.setColumns(15);
+		fHost.setColumns(10);
 		
 		JLabel lblPort = new JLabel("Port");
 		getContentPane().add(lblPort);
 		fPort = new JTextField("3306");
 		getContentPane().add(fPort);
-		fPort.setColumns(15);
+		fPort.setColumns(10);
 		
 		JLabel lblUsername = new JLabel("Username");
 		getContentPane().add(lblUsername);
 		fUser = new JTextField();
 		getContentPane().add(fUser);
-		fUser.setColumns(15);
+		fUser.setColumns(10);
 
 		JLabel lblPassword = new JLabel("Password");
 		getContentPane().add(lblPassword);
 		fPass = new JPasswordField();
 		getContentPane().add(fPass);
-		fPass.setColumns(15);
+		fPass.setColumns(10);
 		
 		JLabel lblDatabase = new JLabel("Database");
 		getContentPane().add(lblDatabase);
 		fDatabase = new JTextField("minecraft");
 		getContentPane().add(fDatabase);
-		fDatabase.setColumns(15);
+		fDatabase.setColumns(10);
 		
 		progress = new JProgressBar(0, 10);
 		getContentPane().add(progress, "al center, span 2");
@@ -72,6 +72,8 @@ public class ConnectionWindow extends JInternalFrame {
 		btnConnect.setActionCommand("connect");
 		btnConnect.setBorderPainted(true);
 		getContentPane().add(btnConnect, "al center, span 2");
+		
+		pack();
 	}
 
 }

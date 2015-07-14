@@ -13,11 +13,16 @@ public class StudentManager {
 	private static MainWindow main;
 	
 	public static void main(String[] args) {
+		
+		// load the theme
 		try {
+			System.out.println("Loading theme...");
 		    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		    System.out.println("System theme loaded");
 		} catch (UnsupportedLookAndFeelException ex) {
 			try {
 				UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+				System.out.println("Crossplatform theme loaded");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -25,6 +30,9 @@ public class StudentManager {
 			ex.printStackTrace();
 			System.exit(-2);
 		}
+		
+		// start the ui
+		System.out.println("Starting the user interface...");
 		main = new MainWindow();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
