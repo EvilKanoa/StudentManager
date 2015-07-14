@@ -3,7 +3,6 @@ package ca.kanoa.manager;
 import java.awt.EventQueue;
 
 import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import ca.kanoa.manager.window.MainWindow;
@@ -39,16 +38,6 @@ public class StudentManager {
 				main.setVisible(true);
 			}
 		});
-	}
-	
-	public static String getLookAndFeelClassName(String nameSnippet) {
-	    LookAndFeelInfo[] plafs = UIManager.getInstalledLookAndFeels();
-	    for (LookAndFeelInfo info : plafs) {
-	        if (info.getName().equalsIgnoreCase(nameSnippet)) {
-	            return info.getClassName();
-	        }
-	    }
-	    return null;
 	}
 
 }

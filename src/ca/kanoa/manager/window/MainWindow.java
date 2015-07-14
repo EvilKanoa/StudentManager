@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -121,11 +122,7 @@ public class MainWindow extends JFrame implements ActionListener {
 				connectionWindow = new ConnectionWindow();
 				desktop.add(connectionWindow);
 			}
-			try {
-				connectionWindow.setSelected(true);
-			} catch (PropertyVetoException e) {
-				e.printStackTrace();
-			}
+			selectWindow(connectionWindow);
 		} else if (event.getActionCommand().equals("quit")) {
 			quit();
 		} else if (event.getActionCommand().equals("contact")) {
@@ -136,6 +133,15 @@ public class MainWindow extends JFrame implements ActionListener {
 				welcomeWindow = new WelcomeWindow(getBounds().width / 2, getBounds().height / 2);
 				desktop.add(welcomeWindow);
 			}
+			selectWindow(welcomeWindow);
+		}
+	}
+	
+	private void selectWindow(JInternalFrame window) {
+		try {
+			window.setSelected(true);
+		} catch (PropertyVetoException e) {
+			e.printStackTrace();
 		}
 	}
 
