@@ -31,8 +31,6 @@ public class MainWindow extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = -3475707702556552739L;
 	private JDesktopPane desktop;
-	private ConnectionWindow connectionWindow;
-	private WelcomeWindow welcomeWindow;
 	private Set<Runnable> quitListeners;
 
 	public MainWindow() {
@@ -57,12 +55,13 @@ public class MainWindow extends JFrame implements ActionListener {
 		background.setLayout(new BorderLayout());
 		setContentPane(background);
 
-		welcomeWindow = new WelcomeWindow(getBounds().width / 2, getBounds().height / 2);
-
 		desktop = new JDesktopPane();
 		desktop.setOpaque(false);
-		desktop.add(welcomeWindow);
+		desktop.add(WelcomeWindow.getWindow());
+		desktop.add(ConnectionWindow.getWindow());
 		getContentPane().add(desktop);
+		
+		openWindow(WelcomeWindow.getWindow());
 	}
 
 	private JMenuBar createMenuBar() {
@@ -117,41 +116,27 @@ public class MainWindow extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand().equals("connect")) {
-			openWindow(WindowType.CONNECTION_WINDOW);
+			openWindow(ConnectionWindow.getWindow());
 		} else if (event.getActionCommand().equals("quit")) {
 			quit();
 		} else if (event.getActionCommand().equals("contact")) {
-			openWindow(WindowType.CONTACT_ACTION);
-		} else if (event.getActionCommand().equals("welcome")) {
-			openWindow(WindowType.WELCOME_WINDOW);
-		}
-	}
-
-	public void openWindow(WindowType window) {
-		switch (window) {
-		case CONNECTION_WINDOW:
-			if (connectionWindow == null || 
-			(!connectionWindow.isShowing() && !connectionWindow.isIcon())) {
-				connectionWindow = new ConnectionWindow();
-				desktop.add(connectionWindow);
-			}
-			selectWindow(connectionWindow);
-			break;
-		case WELCOME_WINDOW:
-			if (welcomeWindow == null || 
-			(!welcomeWindow.isShowing() && !welcomeWindow.isIcon())) {
-				welcomeWindow = new WelcomeWindow(getBounds().width / 2, getBounds().height / 2);
-				desktop.add(welcomeWindow);
-			}
-			selectWindow(welcomeWindow);
-			break;
-		case CONTACT_ACTION:
 			mailTo("kanoa@kanoa.ca", "Support");
-			break;
+		} else if (event.getActionCommand().equals("welcome")) {
+			openWindow(WelcomeWindow.getWindow());
 		}
 	}
+	
+	public static void openWindow(JInternalFrame window) {
+		window.setVisible(true);
+		try {
+			window.setIcon(false);
+		} catch (PropertyVetoException e) {
+			e.printStackTrace();
+		}
+		selectWindow(window);
+	}
 
-	private void selectWindow(JInternalFrame window) {
+	public static void selectWindow(JInternalFrame window) {
 		try {
 			window.setSelected(true);
 		} catch (PropertyVetoException e) {
@@ -170,7 +155,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		quitListeners.add(listener);
 	}
 
-	private void mailTo(String to, String subject) {
+	public static void mailTo(String to, String subject) {
 		try {
 			String mailTo = String.format(
 					"mailto:%s?subject=%s", 

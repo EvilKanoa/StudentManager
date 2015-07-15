@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 public class ConnectionWindow extends JInternalFrame {
 
 	private static final long serialVersionUID = 8505887846013928043L;
+	private static ConnectionWindow instance = null;
 	private JTextField fHost;
 	private JTextField fPort;
 	private JTextField fUser;
@@ -22,11 +23,11 @@ public class ConnectionWindow extends JInternalFrame {
 
 	public ConnectionWindow() {
 		setTitle("Connect");
-		setLocation(150, 150);
+		setLocation(200, 150);
 		setResizable(false);
 		setClosable(true);
 		setIconifiable(true);
-		setVisible(true);
+		setVisible(false);
 		setDefaultCloseOperation(JInternalFrame.HIDE_ON_CLOSE);
 		getContentPane().setLayout(new MigLayout(
 				"wrap 2",
@@ -74,6 +75,13 @@ public class ConnectionWindow extends JInternalFrame {
 		getContentPane().add(btnConnect, "al center, span 2");
 		
 		pack();
+	}
+	
+	public static ConnectionWindow getWindow() {
+		if (instance == null) {
+			instance = new ConnectionWindow();
+		}
+		return instance;
 	}
 
 }
