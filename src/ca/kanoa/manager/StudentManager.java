@@ -40,4 +40,8 @@ public class StudentManager {
 		});
 	}
 
+	public static MainWindow getWindow() {
+		return main;
+	}
+	
 }
