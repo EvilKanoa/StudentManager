@@ -26,7 +26,7 @@ public class ConnectionWindow extends JInternalFrame {
 		setLocation(200, 150);
 		setResizable(false);
 		setClosable(true);
-		setIconifiable(true);
+		setIconifiable(false);
 		setVisible(false);
 		setDefaultCloseOperation(JInternalFrame.HIDE_ON_CLOSE);
 		getContentPane().setLayout(new MigLayout(

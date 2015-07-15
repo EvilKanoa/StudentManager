@@ -20,7 +20,7 @@ public class WelcomeWindow extends JInternalFrame implements MouseListener {
 		setTitle("Welcome");
 		setResizable(false);
 		setClosable(true);
-		setIconifiable(true);
+		setIconifiable(false);
 		setVisible(false);
 		setDefaultCloseOperation(JInternalFrame.HIDE_ON_CLOSE);
 		getContentPane().setLayout(new MigLayout(
@@ -32,13 +32,13 @@ public class WelcomeWindow extends JInternalFrame implements MouseListener {
 		connectionLabel.addMouseListener(this);
 		add(connectionLabel);
 		
-		contactLabel = new LinkLabel("Contact me");
-		contactLabel.addMouseListener(this);
-		add(contactLabel);
-		
 		browseLabel = new LinkLabel("Browse students");
 		browseLabel.addMouseListener(this);
 		add(browseLabel);
+		
+		contactLabel = new LinkLabel("Contact me");
+		contactLabel.addMouseListener(this);
+		add(contactLabel);
 		
 		// resize and reposition
 		pack();

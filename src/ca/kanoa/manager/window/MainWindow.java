@@ -142,11 +142,6 @@ public class MainWindow extends JFrame implements ActionListener {
 	
 	public static void openWindow(JInternalFrame window) {
 		window.setVisible(true);
-		try {
-			window.setIcon(false);
-		} catch (PropertyVetoException e) {
-			e.printStackTrace();
-		}
 		selectWindow(window);
 	}
 
