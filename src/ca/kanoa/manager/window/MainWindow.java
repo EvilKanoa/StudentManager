@@ -57,8 +57,11 @@ public class MainWindow extends JFrame implements ActionListener {
 
 		desktop = new JDesktopPane();
 		desktop.setOpaque(false);
+		
 		desktop.add(WelcomeWindow.getWindow());
 		desktop.add(ConnectionWindow.getWindow());
+		desktop.add(BrowseWindow.getWindow());
+		
 		getContentPane().add(desktop);
 		
 		openWindow(WelcomeWindow.getWindow());
@@ -81,6 +84,15 @@ public class MainWindow extends JFrame implements ActionListener {
 		connectItem.setActionCommand("connect");
 		connectItem.addActionListener(this);
 		actionMenu.add(connectItem);
+
+		JMenuItem browseItem = new JMenuItem(
+				"Browse Students", 
+				KeyEvent.VK_B);
+		browseItem.setAccelerator(KeyStroke.getKeyStroke(
+				KeyEvent.VK_B, ActionEvent.CTRL_MASK));
+		browseItem.setActionCommand("browse");
+		browseItem.addActionListener(this);
+		actionMenu.add(browseItem);
 
 		JMenuItem quitItem = new JMenuItem(
 				"Quit", 
@@ -123,6 +135,8 @@ public class MainWindow extends JFrame implements ActionListener {
 			mailTo("kanoa@kanoa.ca", "Support");
 		} else if (event.getActionCommand().equals("welcome")) {
 			openWindow(WelcomeWindow.getWindow());
+		} else if (event.getActionCommand().equals("browse")) {
+			openWindow(BrowseWindow.getWindow());
 		}
 	}
 	

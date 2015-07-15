@@ -21,7 +21,7 @@ public class ConnectionWindow extends JInternalFrame {
 	private JTextField fDatabase;
 	private JProgressBar progress;
 
-	public ConnectionWindow() {
+	private ConnectionWindow() {
 		setTitle("Connect");
 		setLocation(200, 150);
 		setResizable(false);

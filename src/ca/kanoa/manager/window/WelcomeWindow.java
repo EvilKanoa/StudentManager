@@ -14,8 +14,9 @@ public class WelcomeWindow extends JInternalFrame implements MouseListener {
 	private static WelcomeWindow instance;
 	private LinkLabel connectionLabel;
 	private LinkLabel contactLabel;
+	private LinkLabel browseLabel;
 	
-	public WelcomeWindow() {
+	private WelcomeWindow() {
 		setTitle("Welcome");
 		setResizable(false);
 		setClosable(true);
@@ -35,6 +36,10 @@ public class WelcomeWindow extends JInternalFrame implements MouseListener {
 		contactLabel.addMouseListener(this);
 		add(contactLabel);
 		
+		browseLabel = new LinkLabel("Browse students");
+		browseLabel.addMouseListener(this);
+		add(browseLabel);
+		
 		// resize and reposition
 		pack();
 		setLocation(350, 200);
@@ -46,6 +51,8 @@ public class WelcomeWindow extends JInternalFrame implements MouseListener {
 			MainWindow.openWindow(ConnectionWindow.getWindow());
 		} else if (e.getSource() == contactLabel) {
 			MainWindow.mailTo("kanoa@kanoa.ca", "Support");
+		} else if (e.getSource() == browseLabel) {
+			MainWindow.openWindow(BrowseWindow.getWindow());
 		}
 	}
 
