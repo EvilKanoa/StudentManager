@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
@@ -36,7 +37,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	public MainWindow() {
 		setTitle("Student Manager");
 		initialize();
-		quitListeners = new HashSet<Runnable>();
+		quitListeners = new HashSet<>();
 	}
 
 	private void initialize() {
@@ -46,7 +47,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
 		JLabel background = new JLabel();
 		try {
-			BufferedImage img = ImageIO.read(StudentManager.class.getResource("/background.jpg"));
+			BufferedImage img = ImageIO.read(StudentManager.class.getResource("/img/background.jpg"));
 			background.setIcon(new ImageIcon(img));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,7 +81,7 @@ public class MainWindow extends JFrame implements ActionListener {
 				"Connect to Database", 
 				KeyEvent.VK_D);
 		connectItem.setAccelerator(KeyStroke.getKeyStroke(
-				KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+				KeyEvent.VK_D, InputEvent.CTRL_MASK));
 		connectItem.setActionCommand("connect");
 		connectItem.addActionListener(this);
 		actionMenu.add(connectItem);
@@ -89,7 +90,7 @@ public class MainWindow extends JFrame implements ActionListener {
 				"Browse Students", 
 				KeyEvent.VK_B);
 		browseItem.setAccelerator(KeyStroke.getKeyStroke(
-				KeyEvent.VK_B, ActionEvent.CTRL_MASK));
+				KeyEvent.VK_B, InputEvent.CTRL_MASK));
 		browseItem.setActionCommand("browse");
 		browseItem.addActionListener(this);
 		actionMenu.add(browseItem);
@@ -98,7 +99,7 @@ public class MainWindow extends JFrame implements ActionListener {
 				"Quit", 
 				KeyEvent.VK_Q);
 		quitItem.setAccelerator(KeyStroke.getKeyStroke(
-				KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+				KeyEvent.VK_Q, InputEvent.CTRL_MASK));
 		quitItem.setActionCommand("quit");
 		quitItem.addActionListener(this);
 		actionMenu.add(quitItem);
@@ -112,7 +113,7 @@ public class MainWindow extends JFrame implements ActionListener {
 				"Welcome Screen", 
 				KeyEvent.VK_W);
 		welcomeItem.setAccelerator(KeyStroke.getKeyStroke(
-				KeyEvent.VK_W, ActionEvent.CTRL_MASK));
+				KeyEvent.VK_W, InputEvent.CTRL_MASK));
 		welcomeItem.setActionCommand("welcome");
 		welcomeItem.addActionListener(this);
 		helpMenu.add(welcomeItem);
