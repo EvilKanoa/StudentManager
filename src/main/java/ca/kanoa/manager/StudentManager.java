@@ -36,6 +36,7 @@ public class StudentManager {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				main.setVisible(true);
+				System.out.println("user interface started. have fun!");
 			}
 		});
 
