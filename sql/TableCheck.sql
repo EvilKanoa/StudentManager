@@ -1,0 +1,15 @@
+CREATE TABLE students
+(
+ID INT PRIMARY KEY AUTO_INCREMENT,
+ParentName VARCHAR(255),
+Phone VARCHAR(15),
+Email VARCHAR(255),
+Timezone VARCHAR(255),
+Location TEXT,
+Class VARCHAR(255),
+MinecraftUsername VARCHAR(16),
+StudentAge TINYINT UNSIGNED,
+Gender TINYINT UNSIGNED,
+Notes TEXT,
+StudentName VARCHAR(255)
+);

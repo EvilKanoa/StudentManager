@@ -46,7 +46,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
 		JLabel background = new JLabel();
 		try {
-			BufferedImage img = ImageIO.read(StudentManager.class.getResource("/img/background.jpg"));
+			BufferedImage img = ImageIO.read(StudentManager.class.getResource("/background.jpg"));
 			background.setIcon(new ImageIcon(img));
 		} catch (Exception e) {
 			e.printStackTrace();
