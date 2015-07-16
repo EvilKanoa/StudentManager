@@ -29,4 +29,6 @@ public interface StudentsDAO {
 	@SqlQuery(Statements.FIND_STUDENT)
 	StudentInfo getStudentByID(@Bind("id") int id);
 	
+	void close();
+	
 }
