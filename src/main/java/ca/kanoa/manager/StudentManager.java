@@ -5,9 +5,6 @@ import java.awt.EventQueue;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import org.skife.jdbi.v2.DBI;
-
-import ca.kanoa.manager.sql.StudentsDAO;
 import ca.kanoa.manager.window.MainWindow;
 
 public class StudentManager {
@@ -41,18 +38,7 @@ public class StudentManager {
 				main.setVisible(true);
 			}
 		});
-		
-		System.out.println("connection...");
-		DBI db = new DBI("jdbc:mysql://kanoaca.fatcowmysql.com:3306/kanoa_test", 
-				"kanoa", "kphaley");
-		System.out.println("connected");
-		
-		StudentsDAO dao = db.open(StudentsDAO.class);
-		dao.init();
-		System.out.println("running commands...");
-		dao.addStudent("Kanoa's Child", "", "", "", "", "", "", 0, 0, "", "");
-		System.out.println(dao.getStudentByID(0));
-		dao.close();
+
 	}
 
 	public static MainWindow getWindow() {

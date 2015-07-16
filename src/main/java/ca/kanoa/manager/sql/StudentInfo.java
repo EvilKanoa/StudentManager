@@ -15,8 +15,6 @@ public class StudentInfo {
 	private String notes;
 	private String studentName;
 	
-	public StudentInfo() { }
-	
 	public StudentInfo(int id, String parentName, String phoneNumber, String email,
 			String timezone, String location, String studentClass, 
 			String username, int studentAge, int gender, String notes,
@@ -38,7 +36,6 @@ public class StudentInfo {
 	public int getId() {
 		return id;
 	}
-	
 	public String getParentName() {
 		return parentName;
 	}
