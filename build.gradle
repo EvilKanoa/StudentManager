@@ -16,9 +16,8 @@ jar {
     manifest {
         attributes 'Main-Class': 'ca.kanoa.manager.StudentManager'
     }
-
+    
     from {
         configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
-
