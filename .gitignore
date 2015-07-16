@@ -4,6 +4,7 @@
 .classpath
 *.iml
 
+build/
 bin/
 .gradle/
 .idea/
